@@ -1,0 +1,1 @@
+{"version":3,"sources":["styles.css"],"names":[],"mappings":"AAEA,KACE,sBACF,CAEA,SACE,YAAa,CACb,qBAAsB,CAEtB,gBACF","file":"src.e2e24309.css","sourceRoot":"..","sourcesContent":["/* Type your code here */\n\nbody {\n  font-family: sans-serif;\n}\n\n.content {\n  display: flex;\n  flex-direction: column;\n\n  margin: 1rem auto;\n}"]}
