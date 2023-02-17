@@ -182,7 +182,7 @@ exports.publicURL = exports.isRegisteredUser = exports.userId = exports.CTA_SELE
 exports.CTA_SELECTOR = 'data-cta'; // for the button
 exports.userId = '1'; // for the test reason id is here as a const
 exports.isRegisteredUser = false; // We need only unregistered users
-exports.publicURL = '/abtest/';
+exports.publicURL = '/abtest';
 },{}],"src/analytics/analytics-api.ts":[function(require,module,exports) {
 "use strict";
 
@@ -576,7 +576,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61226" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64286" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
