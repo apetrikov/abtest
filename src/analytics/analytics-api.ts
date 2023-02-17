@@ -20,6 +20,10 @@ type EventPayload = Payload & {
     type: 'click'
 }
 
+type CodePayload = Payload & {
+  data: string
+}
+
 // send page events like open, close, scroll
 export const trackPageview = (payload: PageViewPayload): void => {
     const parsed: String = JSON.stringify(payload)
@@ -30,4 +34,9 @@ export const trackPageview = (payload: PageViewPayload): void => {
 export const trackEvent = (payload: EventPayload): void => {
     const parsed: String = JSON.stringify(payload)
     console.log(`--> Tracking Event: ${parsed}`);
+};
+
+export const trackCodeEvent = (payload: CodePayload): void => {
+  const parsed: String = JSON.stringify(payload)
+  console.log(`--> Tracking Pageview: ${parsed}`);
 };

@@ -2,7 +2,6 @@ import "./styles.css";
 import {CTA_SELECTOR, userId, isRegisteredUser} from "./const";
 import {initAnalytics} from "./analytics/analytics";
 import {initABTest} from "./ab-test"
-import {log} from "./api/logger"
 
 // Your code here
 
@@ -16,9 +15,8 @@ import {log} from "./api/logger"
 
 // Add analytics tracker
 const url: string = window.location.href
-const logger = (payload: string) => log({url, type: 'error', payload})
 
-initAnalytics(userId, url, CTA_SELECTOR)
+const logger = initAnalytics(userId, url, CTA_SELECTOR)
 initABTest({url, userId, isRegisteredUser}, logger)
 
 
