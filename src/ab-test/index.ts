@@ -1,5 +1,6 @@
 import {AB} from "./const";
 import {LStest, read, remove, write} from "./local-storage";
+import {publicURL} from "../const";
 
 // TODO later: optimize media loading with data-src
 
@@ -42,7 +43,14 @@ const loadimages = async () => {
   unloadedImages.forEach(el => {
     const img = el as HTMLImageElement
     const src = img.getAttribute(AB.SELECTOR_IMAGE)
-    src && img.setAttribute('src', src)
+
+    if (process.env.NODE_ENV === 'production') {
+      src && img.setAttribute('src', publicURL + src)
+    } else {
+      src && img.setAttribute('src', src)
+    }
+
+
 
     array.push(img.decode())
   })
