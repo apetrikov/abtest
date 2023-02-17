@@ -27,6 +27,11 @@ const hideOtherVariants = (variants: Element[]) => (name?: string): void => {
     [...variants.slice(0, variantIndex), ...variants.slice(variantIndex + 1)].forEach(node => node.remove())
 }
 
+const hideLoader = () => {
+  const loader = document.querySelector('.loader')
+  loader?.remove()
+}
+
 
 export const initABTest = (params: InitParams, log?: (payload: string) => void): void => {
     const testEl = document.querySelector(`[${AB_SELECTOR}]`)
@@ -41,6 +46,7 @@ export const initABTest = (params: InitParams, log?: (payload: string) => void):
 
   const showVariant = (name?: string) => {
       hideOtherVariants(Array.from(testVariants))(name)
+      hideLoader()
     }
 
     // Further we have two+ variants
