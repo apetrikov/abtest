@@ -1,7 +1,7 @@
 import "./styles.css";
 import {CTA_SELECTOR, userId, isRegisteredUser} from "./const";
 import {initAnalytics} from "./analytics/analytics";
-import {initABTest} from "./ab-test/dom"
+import {initABTest} from "./ab-test"
 import {log} from "./api/logger"
 
 // Your code here

@@ -2,4 +2,4 @@ export const AB_SELECTOR = 'data-test' // main selector of the test. Only one pe
 export const AB_SELECTOR_EXPIRATION = 'data-expiration' // date of test expiration
 export const AB_SELECTOR_VARIANT = 'data-variant' // test variant letter
 
-export const COOKIE_NAME = 'APP_ABTEST'
+export const LS_NAME = 'APP_ABTEST'
