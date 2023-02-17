@@ -209,7 +209,7 @@ var trackEvent = function trackEvent(payload) {
 exports.trackEvent = trackEvent;
 var trackCodeEvent = function trackCodeEvent(payload) {
   var parsed = JSON.stringify(payload);
-  console.log("--> Tracking Pageview: ".concat(parsed));
+  console.log("--> Tracking code event: ".concat(parsed));
 };
 exports.trackCodeEvent = trackCodeEvent;
 },{}],"src/analytics/analytics.ts":[function(require,module,exports) {
