@@ -178,10 +178,11 @@ module.hot.accept(reloadCSS);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isRegisteredUser = exports.userId = exports.CTA_SELECTOR = void 0;
+exports.publicURL = exports.isRegisteredUser = exports.userId = exports.CTA_SELECTOR = void 0;
 exports.CTA_SELECTOR = 'data-cta'; // for the button
 exports.userId = '1'; // for the test reason id is here as a const
 exports.isRegisteredUser = false; // We need only unregistered users
+exports.publicURL = '/abtest/';
 },{}],"src/analytics/analytics-api.ts":[function(require,module,exports) {
 "use strict";
 
@@ -351,6 +352,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.initABTest = void 0;
 var const_1 = require("./const");
 var local_storage_1 = require("./local-storage");
+var const_2 = require("../const");
 var validateExpirationDate = function validateExpirationDate(expirationDate) {
   var date = new Date(expirationDate);
   if (date.toString() === 'Invalid date') return false;
@@ -392,7 +394,11 @@ var loadimages = function loadimages() {
           unloadedImages.forEach(function (el) {
             var img = el;
             var src = img.getAttribute(const_1.AB.SELECTOR_IMAGE);
-            src && img.setAttribute('src', src);
+            if ("development" === 'production') {
+              src && img.setAttribute('src', const_2.publicURL + src);
+            } else {
+              src && img.setAttribute('src', src);
+            }
             array.push(img.decode());
           });
           _context.next = 7;
@@ -498,7 +504,7 @@ var initABTest = function initABTest(params, log) {
   showVariant(randomName);
 };
 exports.initABTest = initABTest;
-},{"./const":"src/ab-test/const.ts","./local-storage":"src/ab-test/local-storage.ts"}],"src/api/logger.ts":[function(require,module,exports) {
+},{"./const":"src/ab-test/const.ts","./local-storage":"src/ab-test/local-storage.ts","../const":"src/const.ts"}],"src/api/logger.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -570,7 +576,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58111" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61226" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
