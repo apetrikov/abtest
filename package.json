@@ -5,13 +5,15 @@
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html --open",
-    "build": "parcel build index.html --public-url /abtest/",
-    "deploy": "npm run build && gh-pages -d dist"
+    "build": "npm run check & parcel build index.html --public-url /abtest/",
+    "deploy": "npm run build && gh-pages -d dist",
+    "check": "tsc --noEmit"
   },
   "devDependencies": {
     "@babel/core": "7.2.0",
     "gh-pages": "^5.0.0",
-    "parcel-bundler": "^1.6.1"
+    "parcel-bundler": "^1.6.1",
+    "typescript": "^4.9.5"
   },
   "keywords": [],
   "dependencies": {

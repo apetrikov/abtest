@@ -11,6 +11,8 @@ import { trackPageview, trackEvent } from "./analytics/analytics-api.js";
 
 // TODO
 
+// Add analytics tracker
+
 // Work with HTML service
 // Work with cookie service
 // Work with analytics service (analytics-api.js)
