@@ -19,7 +19,7 @@ const validateExpirationDate = (expirationDate: string): boolean => {
     if (date.toString() === 'Invalid date') return false
     if (date.getTime() <= Date.now()) return false
 
-return true
+    return true
 }
 
 const hideOtherVariants = (variants: Element[]) => (name?: string): void => {
@@ -35,13 +35,13 @@ const hideOtherVariants = (variants: Element[]) => (name?: string): void => {
 }
 
 
-export const initABTest = (params: InitParams): void => {
+export const initABTest = (params: InitParams, log?: (payload: string) => void): void => {
     const testEl = document.querySelector(`[${AB_SELECTOR}]`)
     if (!testEl) return // no test, show as is, OK
 
     const testVariants = testEl.querySelectorAll(`[${AB_SELECTOR_VARIANT}]`)
     if (testVariants.length < 2) {
-        //log error
+        log?.('AB test, less then 2 variants')
         return
     } // log ERROR, show as is
 
@@ -49,12 +49,12 @@ export const initABTest = (params: InitParams): void => {
 
     const expirationDate = testEl.getAttribute(AB_SELECTOR_EXPIRATION)
     if (!expirationDate) {
-        // log error
+        log?.('AB test, no expiration date')
         showVariant()
         return
     }// log error, select first variant (control)
     if (!validateExpirationDate(expirationDate)) {
-        // log error
+        log?.('AB test, wrong expiration date')
         showVariant()
         return
     }
@@ -71,9 +71,9 @@ export const initABTest = (params: InitParams): void => {
     const randomName = Array.from(testVariants)[randomVariant].getAttribute(AB_SELECTOR_VARIANT)
 
     if (!randomName) {
-      // log error
-      showVariant()
-      return
+        log?.('AB test, can not define random variant name')
+        showVariant()
+        return
     }
 
     showVariant(randomName)

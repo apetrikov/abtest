@@ -6,5 +6,5 @@ type LoggerEvent = {
 
 // logs events params: type, url, payload
 export const log = (payload: LoggerEvent): void => {
-  console.log(`--> Logger: ${payload}`);
+  console.log(`--> Logger: ${JSON.stringify(payload)}`);
 };
