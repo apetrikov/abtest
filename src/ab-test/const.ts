@@ -2,4 +2,6 @@ export const AB_SELECTOR = 'data-test' // main selector of the test. Only one pe
 export const AB_SELECTOR_EXPIRATION = 'data-expiration' // date of test expiration
 export const AB_SELECTOR_VARIANT = 'data-variant' // test variant letter
 
+export const AB_IMAGE_SELECTOR = 'data-src' // for image optimization
+
 export const LS_NAME = 'APP_ABTEST'

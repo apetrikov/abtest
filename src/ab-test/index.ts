@@ -1,4 +1,4 @@
-import {AB_SELECTOR, AB_SELECTOR_VARIANT, AB_SELECTOR_EXPIRATION} from "./const";
+import {AB_SELECTOR, AB_SELECTOR_VARIANT, AB_SELECTOR_EXPIRATION, AB_IMAGE_SELECTOR} from "./const";
 import {LStest, read, remove, write} from "./local-storage";
 
 // TODO later: optimize media loading with data-src
@@ -32,6 +32,24 @@ const hideLoader = () => {
   loader?.remove()
 }
 
+const loadimages = async () => {
+  const unloadedImages = document.querySelectorAll(`[${AB_IMAGE_SELECTOR}]`)
+  if (unloadedImages.length === 0) return
+
+  const array = <any>[]
+
+
+  unloadedImages.forEach(el => {
+    const img = el as HTMLImageElement
+    const src = img.getAttribute(AB_IMAGE_SELECTOR)
+    src && img.setAttribute('src', src)
+
+    array.push(img.decode())
+  })
+
+  await Promise.all(array)
+}
+
 
 export const initABTest = (params: InitParams, log?: (payload: string) => void): void => {
     const testEl = document.querySelector(`[${AB_SELECTOR}]`)
@@ -44,8 +62,9 @@ export const initABTest = (params: InitParams, log?: (payload: string) => void):
         return
     } // log ERROR, show as is
 
-  const showVariant = (name?: string) => {
+  const showVariant = async (name?: string) => {
       hideOtherVariants(Array.from(testVariants))(name)
+      await loadimages()
       hideLoader()
     }
 
