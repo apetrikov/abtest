@@ -1,7 +1,10 @@
-export const AB_SELECTOR = 'data-test' // main selector of the test. Only one per document
-export const AB_SELECTOR_EXPIRATION = 'data-expiration' // date of test expiration
-export const AB_SELECTOR_VARIANT = 'data-variant' // test variant letter
+export enum AB {
+  SELECTOR_NAME = 'data-test',  // main selector of the test. Only one per document
+  SELECTOR_EXPIRATION = 'data-expiration',  // date of test expiration
+  SELECTOR_VARIANT = 'data-variant',  // test variant letter
+  SELECTOR_IMAGE = 'data-src'  // for image optimization
+}
 
-export const AB_IMAGE_SELECTOR = 'data-src' // for image optimization
-
-export const LS_NAME = 'APP_ABTEST'
+export enum LS {
+  KEY_NAME = 'APP_ABTEST'
+}

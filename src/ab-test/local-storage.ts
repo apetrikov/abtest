@@ -1,4 +1,4 @@
-import {LS_NAME} from "./const";
+import {LS} from "./const";
 
 export type LStest = {
     ts: string,
@@ -17,7 +17,7 @@ function isLStest(item: any): item is LStest {
 }
 
 export const read = (url: string): LStest | null => {
-  const key = `${LS_NAME}_${url}`
+  const key = `${LS.KEY_NAME}_${url}`
     const rawItem = localStorage.getItem(key)
     if (!rawItem) return null
     let item: unknown
@@ -35,10 +35,10 @@ export const read = (url: string): LStest | null => {
 }
 
 export const write = (params: LStest): void => {
-    localStorage.setItem(`${LS_NAME}_${params.url}`, JSON.stringify(params))
+    localStorage.setItem(`${LS.KEY_NAME}_${params.url}`, JSON.stringify(params))
 }
 
 export const remove = (url: string): void => {
-  const key = `${LS_NAME}_${url}`
+  const key = `${LS.KEY_NAME}_${url}`
   localStorage.removeItem(key)
 }

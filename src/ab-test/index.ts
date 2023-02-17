@@ -1,4 +1,4 @@
-import {AB_SELECTOR, AB_SELECTOR_VARIANT, AB_SELECTOR_EXPIRATION, AB_IMAGE_SELECTOR} from "./const";
+import {AB} from "./const";
 import {LStest, read, remove, write} from "./local-storage";
 
 // TODO later: optimize media loading with data-src
@@ -21,7 +21,7 @@ const validateExpirationDate = (expirationDate: string): boolean => {
 const hideOtherVariants = (variants: Element[]) => (name?: string): void => {
     let variantIndex = 0;
     if (name) {
-        variantIndex = variants.findIndex(node => node.getAttribute(AB_SELECTOR_VARIANT) === name);
+        variantIndex = variants.findIndex(node => node.getAttribute(AB.SELECTOR_VARIANT) === name);
     }
     if (variantIndex < 0) variantIndex = 0; // show default
     [...variants.slice(0, variantIndex), ...variants.slice(variantIndex + 1)].forEach(node => node.remove())
@@ -33,7 +33,7 @@ const hideLoader = () => {
 }
 
 const loadimages = async () => {
-  const unloadedImages = document.querySelectorAll(`[${AB_IMAGE_SELECTOR}]`)
+  const unloadedImages = document.querySelectorAll(`[${AB.SELECTOR_IMAGE}]`)
   if (unloadedImages.length === 0) return
 
   const array = <any>[]
@@ -41,7 +41,7 @@ const loadimages = async () => {
 
   unloadedImages.forEach(el => {
     const img = el as HTMLImageElement
-    const src = img.getAttribute(AB_IMAGE_SELECTOR)
+    const src = img.getAttribute(AB.SELECTOR_IMAGE)
     src && img.setAttribute('src', src)
 
     array.push(img.decode())
@@ -52,10 +52,10 @@ const loadimages = async () => {
 
 
 export const initABTest = (params: InitParams, log?: (payload: string) => void): void => {
-    const testEl = document.querySelector(`[${AB_SELECTOR}]`)
+    const testEl = document.querySelector(`[${AB.SELECTOR_NAME}]`)
     if (!testEl) return // no test, show as is, OK
 
-    const testVariants = testEl.querySelectorAll(`[${AB_SELECTOR_VARIANT}]`)
+    const testVariants = testEl.querySelectorAll(`[${AB.SELECTOR_VARIANT}]`)
     if (testVariants.length < 2) {
         log?.('AB test, less then 2 variants')
         remove(params.url)
@@ -69,7 +69,7 @@ export const initABTest = (params: InitParams, log?: (payload: string) => void):
     }
 
     // Further we have two+ variants
-    const testName = testEl.getAttribute(AB_SELECTOR)
+    const testName = testEl.getAttribute(AB.SELECTOR_NAME)
     if (!testName) {
         log?.('AB test, no test name')
         remove(params.url)
@@ -78,7 +78,7 @@ export const initABTest = (params: InitParams, log?: (payload: string) => void):
     }
 
 
-    const expirationDate = testEl.getAttribute(AB_SELECTOR_EXPIRATION)
+    const expirationDate = testEl.getAttribute(AB.SELECTOR_EXPIRATION)
     if (!expirationDate) {
         log?.('AB test, no expiration date')
         remove(params.url)
@@ -132,7 +132,7 @@ export const initABTest = (params: InitParams, log?: (payload: string) => void):
     // randomly assign a variant, show it
     const numberOfVariants: number = testVariants.length
     const randomVariant: number = Math.floor(Math.random() * numberOfVariants);
-    const randomName = Array.from(testVariants)[randomVariant].getAttribute(AB_SELECTOR_VARIANT)
+    const randomName = Array.from(testVariants)[randomVariant].getAttribute(AB.SELECTOR_VARIANT)
 
     if (!randomName) {
         log?.('AB test, can not define random variant name')

@@ -4,6 +4,8 @@
  * The URL is probably a good start though.
  */
 
+
+// here we will send other data from navigator
 type Payload = {
   userId: string,
   ts: number,
