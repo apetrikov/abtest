@@ -38,5 +38,5 @@ export const trackEvent = (payload: EventPayload): void => {
 
 export const trackCodeEvent = (payload: CodePayload): void => {
   const parsed: String = JSON.stringify(payload)
-  console.log(`--> Tracking Pageview: ${parsed}`);
+  console.log(`--> Tracking code event: ${parsed}`);
 };
