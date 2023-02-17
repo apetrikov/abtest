@@ -4,22 +4,28 @@
  * The URL is probably a good start though.
  */
 
-type PageViewPayload = {
-    url: string,
-    type: 'load' | 'leave'
+type Payload = {
+  userId: string,
+  ts: number,
+  url: string,
 }
 
-type EventPayload = {
-    url: string,
+type PageViewPayload  = Payload & {
+    type: 'load' | 'unload'
+}
+
+type EventPayload = Payload & {
     type: 'click'
 }
 
 // send page events like open, close, scroll
 export const trackPageview = (payload: PageViewPayload): void => {
-    console.log(`--> Tracking Pageview: ${payload}`);
+    const parsed: String = JSON.stringify(payload)
+    console.log(`--> Tracking Pageview: ${parsed}`);
 };
 
 // sent user events like press, click
 export const trackEvent = (payload: EventPayload): void => {
-    console.log(`--> Tracking Event: ${payload}`);
+    const parsed: String = JSON.stringify(payload)
+    console.log(`--> Tracking Event: ${parsed}`);
 };

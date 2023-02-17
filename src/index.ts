@@ -1,5 +1,6 @@
 import "./styles.css";
-import { trackPageview, trackEvent } from "./analytics/analytics-api.js";
+import {CTA_SELECTOR, userId} from "./const";
+import {initAnalytics} from "./analytics/analytics";
 
 // Your code here
 
@@ -12,8 +13,10 @@ import { trackPageview, trackEvent } from "./analytics/analytics-api.js";
 // TODO
 
 // Add analytics tracker
+const url: string = window.location.href
+initAnalytics(userId, url, CTA_SELECTOR)
+
 
 // Work with HTML service
 // Work with cookie service
-// Work with analytics service (analytics-api.js)
 // Log errors servise
