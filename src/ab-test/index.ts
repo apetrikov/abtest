@@ -1,6 +1,7 @@
 import {AB} from "./const";
 import {LStest, read, remove, write} from "./local-storage";
 import {publicURL} from "../const";
+import {log} from "util";
 
 // TODO later: optimize media loading with data-src
 
@@ -24,7 +25,10 @@ const hideOtherVariants = (variants: Element[]) => (name?: string): void => {
     if (name) {
         variantIndex = variants.findIndex(node => node.getAttribute(AB.SELECTOR_VARIANT) === name);
     }
-    if (variantIndex < 0) variantIndex = 0; // show default
+  if (variantIndex < 0) {
+    log?.('AB test, can not find saved variant')
+    variantIndex = 0; // show default
+  }
     [...variants.slice(0, variantIndex), ...variants.slice(variantIndex + 1)].forEach(node => node.remove())
 }
 
