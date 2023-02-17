@@ -1,5 +1,5 @@
 import "./styles.css";
-import { trackPageview, trackEvent } from "./analytics-api.js";
+import { trackPageview, trackEvent } from "./analytics/analytics-api.js";
 
 // Your code here
 

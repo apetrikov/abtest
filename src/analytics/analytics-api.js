@@ -3,6 +3,8 @@
  * Send as params whatever you might seem valuable to send.
  * The URL is probably a good start though.
  */
+
+// send page events like open, close, scroll
 export const trackPageview = (params) => {
   console.log(`--> Tracking Pageview: ${params}`);
 };
@@ -12,6 +14,8 @@ export const trackPageview = (params) => {
 * Send as params whatever you might seem valuable to send.
 * The URL and an event name are probably a good start though.
 */
+
+// sent user events like press, click
 export const trackEvent = (params) => {
   console.log(`--> Tracking Event: ${params}`);
 };
